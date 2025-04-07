@@ -4,7 +4,7 @@
       <!-- Blog Posts Section -->
       <main class="flex-1 p-4">
         <h1 class="text-xl font-bold mb-4">@maxrimue's Blog</h1>
-        <BlogPostList :posts="blogPosts" />
+        <BlogPostList />
       </main>
 
       <!-- Divider (visible only on large screens) -->
@@ -17,7 +17,7 @@
           Hey, I'm Max! I'm a software engineer with a passion for building
           software the next person doesn't lose hair over.
         </p>
-        <SocialLinks :links="socialLinks" />
+        <SocialLinks />
         <LinkButton :link="emailLink" />
       </aside>
     </div>
@@ -28,29 +28,6 @@
 import BlogPostList from "~/components/BlogPostList.vue";
 import LinkButton from "~/components/LinkButton.vue";
 import SocialLinks from "~/components/SocialLinks.vue";
-
-const blogPosts = [
-  { id: 1, title: "Read my first post", link: "/posts/hello-world" },
-];
-
-const socialLinks = [
-  { name: "GitHub", url: "https://github.com/maxrimue", icon: "uil:github" },
-  {
-    name: "Dev.to",
-    url: "https://dev.to/maxrimue",
-    icon: "skill-icons:devto-dark",
-  },
-  {
-    name: "Bluesky",
-    url: "https://bsky.app/profile/maxrimue.bsky.social",
-    icon: "ri:bluesky-fill",
-  },
-  {
-    name: "LinkedIn",
-    url: "https://www.linkedin.com/in/max-r-301b99113/",
-    icon: "uil:linkedin",
-  },
-];
 
 const emailLink = {
   name: "Email",

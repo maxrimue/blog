@@ -1,7 +1,7 @@
 <template>
   <ul>
-    <li v-for="post in posts" :key="post.id">
-      <NuxtLink :to="post.link" class="text-blue-500 hover:underline">
+    <li v-for="post in posts" :key="post._path">
+      <NuxtLink :to="post._path" class="text-blue-500 hover:underline">
         {{ post.title }}
       </NuxtLink>
     </li>
@@ -9,10 +9,5 @@
 </template>
 
 <script setup>
-defineProps({
-  posts: {
-    type: Array,
-    required: true,
-  },
-});
+const posts = await queryCollection("posts").all();
 </script>

@@ -1,0 +1,24 @@
+{
+  "items": [
+    {
+      "name": "GitHub",
+      "url": "https://github.com/maxrimue",
+      "icon": "uil:github"
+    },
+    {
+      "name": "Dev.to",
+      "url": "https://dev.to/maxrimue",
+      "icon": "skill-icons:devto-dark"
+    },
+    {
+      "name": "Bluesky",
+      "url": "https://bsky.app/profile/maxrimue.bsky.social",
+      "icon": "ri:bluesky-fill"
+    },
+    {
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com/in/max-r-301b99113/",
+      "icon": "uil:linkedin"
+    }
+  ]
+}
