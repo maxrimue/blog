@@ -13,6 +13,11 @@ Unfortunately, there's nothing to see here yet in terms of posts. However, look 
 - Lists
 - Code blocks
 
-```bash [file]{2} meta-info=val
-echo "bla bla bla"
+```bash
+echo "Syntax highlighting works!"
+```
+
+```ts
+const message = "Hello, world!";
+console.log(message);
 ```
