@@ -6,14 +6,13 @@ date: "2025-03-28"
 
 # Hello World!
 
-Welcome to my **first blog post** using Nuxt Content.
+Welcome to my **first blog post**!
 
-This is a paragraph demonstrating basic markdown. You can add more content here like:
+Unfortunately, there's nothing to see here yet in terms of posts. However, look at this cool technical demo of formatting Markdown:
 
 - Lists
 - Code blocks
-- Images (make sure to handle assets correctly, often placing them in the `public/` directory)
 
-```bash
+```bash [file]{2} meta-info=val
 echo "bla bla bla"
 ```

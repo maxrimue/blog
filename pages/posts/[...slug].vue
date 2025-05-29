@@ -1,10 +1,16 @@
 <template>
-  <ContentRenderer v-if="page" :value="page" />
+  <BaseScreen>
+    <div class="prose prose-lg mx-auto">
+      <ContentRenderer :value="page" />
+    </div>
+  </BaseScreen>
 </template>
 
 <script setup>
+import BaseScreen from "~/components/BaseScreen.vue";
+
 const route = useRoute();
 const { data: page } = await useAsyncData(route.path, () => {
-  return queryCollection("content").path(route.path).first();
+  return queryCollection("posts").path(route.path).first();
 });
 </script>
