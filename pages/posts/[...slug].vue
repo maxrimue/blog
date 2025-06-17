@@ -1,6 +1,6 @@
 <template>
   <BaseScreen>
-    <div class="prose prose-lg mx-auto prose-pre:bg-gray-100">
+    <div class="prose prose-lg prose-pre:bg-gray-100">
       <ContentRenderer :value="page" />
     </div>
   </BaseScreen>
