@@ -7,6 +7,18 @@ export default defineNuxtConfig({
     noScripts: true,
   },
 
+  content: {
+    build: {
+      markdown: {
+        highlight: {
+          theme: {
+            default: "github-dark",
+          },
+        },
+      },
+    },
+  },
+
   modules: [
     "@nuxt/content",
     "@nuxt/eslint",

@@ -3,7 +3,9 @@
     <title>{{ page.title }} - @maxrimue's Blog</title>
     <h1 class="text-2xl font-bold">{{ page.title }}</h1>
     <p class="opacity-70">{{ formattedDate }}</p>
-    <div class="prose prose-pre:bg-gray-100 font-serif">
+    <div
+      class="prose prose-pre:bg-gray-800 dark:prose-pre:bg-black dark:prose-invert font-serif"
+    >
       <ContentRenderer :value="page" />
     </div>
   </BaseScreen>
