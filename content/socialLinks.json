@@ -11,9 +11,9 @@
       "icon": "skill-icons:devto-dark"
     },
     {
-      "name": "Bluesky",
-      "url": "https://bsky.app/profile/maxrimue.bsky.social",
-      "icon": "ri:bluesky-fill"
+      "name": "Mastodon",
+      "url": "https://mastodon.social/@maxrimue",
+      "icon": "ri:mastodon-fill"
     },
     {
       "name": "LinkedIn",
