@@ -7,7 +7,14 @@ import Header from "../../components/Header.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
 import Layout from "../../layouts/Layout.astro";
 
-const posts = (await getCollection("blog")).sort(
+const posts = (await getCollection("blog", ({ data }) => {
+  // In production, filter out draft posts
+  if (import.meta.env.PROD) {
+    return data.draft !== true;
+  }
+  // In dev mode, show all posts
+  return true;
+})).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 ---
