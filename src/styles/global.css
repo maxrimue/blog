@@ -1,7 +1,235 @@
-/*
-  The CSS in this style tag is based off of Bear Blog's default CSS.
-  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
-  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
-  */
-
 @import "tailwindcss";
+
+/* ————— Theme tokens ————— */
+
+@theme {
+  --color-surface: #faf8f5;
+  --color-surface-raised: #f0ede8;
+  --color-surface-sunken: #e8e4de;
+  --color-text: #2c2a25;
+  --color-text-muted: #7a756c;
+  --color-text-faint: #a9a49b;
+  --color-accent: #4a90b8;
+  --color-accent-hover: #3a7599;
+  --color-border: #ddd8d0;
+  --color-code-bg: #f5f2ed;
+  --color-code-text: #5a5550;
+}
+
+/* ————— Base ————— */
+
+html {
+  font-family: var(--font-inter);
+  color: var(--color-text);
+  background-color: var(--color-surface);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-surface: #1a1915;
+    --color-surface-raised: #26241e;
+    --color-surface-sunken: #13120f;
+    --color-text: #e8e4de;
+    --color-text-muted: #9a958c;
+    --color-text-faint: #6b665e;
+    --color-accent: #6db3d6;
+    --color-accent-hover: #8ac4e0;
+    --color-border: #36332c;
+    --color-code-bg: #22201a;
+    --color-code-text: #c4bfb6;
+  }
+}
+
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-surface);
+}
+
+/* ————— Prose (Markdown content) ————— */
+
+.prose {
+  font-family: var(--font-playfair-display);
+  line-height: 1.75;
+  color: var(--color-text);
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  font-family: var(--font-playfair-display);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--color-text);
+  letter-spacing: -0.01em;
+}
+
+.prose h1 {
+  font-size: 2.25rem;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+.prose h2 {
+  font-size: 1.75rem;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.prose h3 {
+  font-size: 1.35rem;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose h4 {
+  font-size: 1.1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.prose p {
+  margin-top: 1.25rem;
+  margin-bottom: 0;
+}
+
+.prose > :first-child {
+  margin-top: 0;
+}
+
+.prose a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: color 0.15s ease;
+}
+
+.prose a:hover {
+  color: var(--color-accent-hover);
+}
+
+.prose strong {
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.prose em {
+  font-style: italic;
+}
+
+.prose ul,
+.prose ol {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+
+.prose ul {
+  list-style-type: disc;
+}
+
+.prose ol {
+  list-style-type: decimal;
+}
+
+.prose li {
+  margin-top: 0.35rem;
+  margin-bottom: 0.35rem;
+}
+
+.prose li > ul,
+.prose li > ol {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.prose blockquote {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-left: 1.25rem;
+  border-left: 3px solid var(--color-accent);
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.prose blockquote p {
+  margin-top: 0.75rem;
+  margin-bottom: 0;
+}
+
+.prose blockquote > :first-child {
+  margin-top: 0;
+}
+
+.prose hr {
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+  border: none;
+  border-top: 1px solid var(--color-border);
+}
+
+.prose code {
+  font-size: 0.875em;
+  font-family: ui-monospace, "SF Mono", "Cascadia Code", "Segoe UI Mono", Menlo,
+    Consolas, monospace;
+  background-color: var(--color-code-bg);
+  color: var(--color-code-text);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+}
+
+.prose pre {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  border-radius: 8px;
+  background-color: var(--color-code-bg);
+  overflow-x: auto;
+  line-height: 1.6;
+  border: 1px solid var(--color-border);
+}
+
+.prose pre code {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  color: inherit;
+  font-size: 0.85rem;
+}
+
+.prose img {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  max-width: 100%;
+  height: auto;
+}
+
+.prose table {
+  width: 100%;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.prose thead th {
+  font-weight: 700;
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 2px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.prose tbody td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.prose tbody tr:last-child td {
+  border-bottom: none;
+}

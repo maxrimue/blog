@@ -2,63 +2,57 @@
 import Layout from "../layouts/Layout.astro";
 import FormattedDate from "../components/FormattedDate.astro";
 import { getCollection } from "astro:content";
-import Copy from "../components/typography/Copy.astro";
-import Link from "../components/typography/Link.astro";
 
-const posts = (await getCollection("blog", ({ data }) => {
-  // In production, filter out draft posts
-  if (import.meta.env.PROD) {
-    return data.draft !== true;
-  }
-  // In dev mode, show all posts
-  return true;
-}))
+const posts = (
+  await getCollection("blog", ({ data }) => {
+    if (import.meta.env.PROD) {
+      return data.draft !== true;
+    }
+    return true;
+  })
+)
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 ---
 
 <Layout>
-  <section class="w-full max-w-2xl mx-auto py-8 px-4 text-center">
-    <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">
-      Hi, I'm Max 👋
-    </h1>
-    <p class="mt-3 text-base text-gray-600 dark:text-gray-300">
-      I try to write about web development, performance, and things I'm
-      learning.
-    </p>
-  </section>
+  <div class="max-w-2xl mx-auto">
+    <section class="py-10">
+      <h1 class="font-inter text-5xl sm:text-6xl tracking-tight leading-[1.05]">
+        Hi, I'm Max
+      </h1>
+      <p class="mt-4 text-lg text-text-muted leading-relaxed max-w-lg">
+        I write about web development, performance, and things I'm learning.
+      </p>
+    </section>
 
-  <div
-    class="w-full max-w-4xl grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 mx-auto pb-8"
-  >
-    <section class="rounded-2xl bg-gray-50 p-5 dark:bg-gray-800 sm:p-6 md:p-8">
-      <div class="flex items-baseline justify-between gap-3">
-        <h2 class="text-xl font-semibold tracking-tight sm:text-2xl">
-          Latest posts
-        </h2>
+    <section class="pb-10">
+      <div class="flex items-baseline justify-between mb-6">
+        <h2 class="font-inter text-2xl tracking-tight">Latest posts</h2>
+        <a
+          href="/blog"
+          class="text-sm text-accent hover:text-accent-hover transition-colors"
+        >
+          View all &rarr;
+        </a>
       </div>
+
       {
         posts.length === 0 ? (
-          <Copy>No posts yet. Check back soon.</Copy>
+          <p class="text-text-muted">No posts yet. Check back soon.</p>
         ) : (
-          <ul class="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <ul class="space-y-1">
             {posts.map((post) => (
-              <li class="rounded-lg bg-white p-4 shadow-sm transition hover:shadow md:p-5 dark:bg-gray-900">
+              <li>
                 <a
                   href={`/blog/${post.id}/`}
-                  class="block focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  class="group flex items-baseline justify-between gap-4 py-3 border-b border-border transition-colors hover:border-accent"
                 >
-                  <h3 class="text-base font-medium text-gray-900 dark:text-gray-100">
+                  <span class="font-medium group-hover:text-accent transition-colors">
                     {post.data.title}
-                  </h3>
-                  <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                  </span>
+                  <span class="text-sm text-text-faint shrink-0 tabular-nums">
                     <FormattedDate date={post.data.pubDate} />
-                  </p>
-                  <p class="mt-2 line-clamp-3 text-sm text-gray-700 dark:text-gray-300">
-                    {post.data.description}
-                  </p>
-                  <span class="mt-3 inline-block text-sm font-medium text-blue-700 dark:text-blue-400">
-                    Read more →
                   </span>
                 </a>
               </li>
@@ -68,35 +62,39 @@ const posts = (await getCollection("blog", ({ data }) => {
       }
     </section>
 
-    <section class="rounded-2xl bg-gray-50 p-5 dark:bg-gray-800 sm:p-6 md:p-8">
-      <h2 class="text-xl font-semibold tracking-tight sm:text-2xl">Socials</h2>
-      <nav class="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
+    <section class="pb-12">
+      <h2 class="font-inter text-2xl tracking-tight mb-6">Elsewhere</h2>
+      <nav class="flex flex-wrap gap-3">
         <a
           href="https://github.com/maxrimue"
           target="_blank"
           rel="noreferrer"
-          class="rounded-lg bg-white px-4 py-3 text-sm text-gray-800 shadow-sm transition hover:shadow dark:bg-gray-900 dark:text-gray-200"
-          >GitHub</a
+          class="px-4 py-2 text-sm border border-border rounded-full text-text-muted hover:text-accent hover:border-accent transition-colors"
         >
+          GitHub
+        </a>
         <a
           href="https://mastodon.social/@maxrimue"
           target="_blank"
           rel="noreferrer"
-          class="rounded-lg bg-white px-4 py-3 text-sm text-gray-800 shadow-sm transition hover:shadow dark:bg-gray-900 dark:text-gray-200"
-          >Mastodon</a
+          class="px-4 py-2 text-sm border border-border rounded-full text-text-muted hover:text-accent hover:border-accent transition-colors"
         >
+          Mastodon
+        </a>
         <a
           href="https://www.linkedin.com/in/max-r-301b99113/"
           target="_blank"
           rel="noreferrer"
-          class="rounded-lg bg-white px-4 py-3 text-sm text-gray-800 shadow-sm transition hover:shadow dark:bg-gray-900 dark:text-gray-200"
-          >LinkedIn</a
+          class="px-4 py-2 text-sm border border-border rounded-full text-text-muted hover:text-accent hover:border-accent transition-colors"
         >
+          LinkedIn
+        </a>
         <a
           href="/rss.xml"
-          class="rounded-lg bg-white px-4 py-3 text-sm text-gray-800 shadow-sm transition hover:shadow dark:bg-gray-900 dark:text-gray-200"
-          >RSS</a
+          class="px-4 py-2 text-sm border border-border rounded-full text-text-muted hover:text-accent hover:border-accent transition-colors"
         >
+          RSS
+        </a>
       </nav>
     </section>
   </div>

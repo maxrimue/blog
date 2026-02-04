@@ -2,7 +2,7 @@
 
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
-import { defineConfig } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 
 import tailwindcss from "@tailwindcss/vite";
 
@@ -13,5 +13,20 @@ export default defineConfig({
 
 	vite: {
 		plugins: [tailwindcss()],
+	},
+
+	experimental: {
+		fonts: [
+			{
+				provider: fontProviders.google(),
+				name: "Playfair Display",
+				cssVariable: "--font-playfair-display",
+			},
+			{
+				provider: fontProviders.google(),
+				name: "Inter",
+				cssVariable: "--font-inter",
+			},
+		],
 	},
 });
