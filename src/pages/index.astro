@@ -2,17 +2,13 @@
 import Layout from "../layouts/Layout.astro";
 import FormattedDate from "../components/FormattedDate.astro";
 import { getCollection } from "astro:content";
+import { isPublished, sortByDateDesc } from "../utils/posts";
 
-const posts = (
+const posts = sortByDateDesc(
   await getCollection("blog", ({ data }) => {
-    if (import.meta.env.PROD) {
-      return data.draft !== true;
-    }
-    return true;
-  })
-)
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 3);
+    return import.meta.env.PROD ? isPublished(data) : true;
+  }),
+).slice(0, 3);
 ---
 
 <Layout>
