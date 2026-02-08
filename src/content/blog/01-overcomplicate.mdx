@@ -5,6 +5,12 @@ pubDate: 2024-02-04
 draft: true
 ---
 
+import ImageCompare from '../../components/ImageCompare.astro';
+import codesBrokenBackground from './01-codes-broken-background.png'
+import codesBrokenForeground from './01-codes-broken-foreground.png'
+
+---
+
 # Welcome to My Blog
 
 This is my first blog post! Since this post has `draft: true` in its frontmatter, it will only be visible when running in development mode (`npm run dev`).
@@ -34,6 +40,17 @@ console.log(greeting);
 ### Emphasis
 
 You can write in **bold** or *italic* text.
+
+### Before/After
+
+<ImageCompare
+  before={codesBrokenBackground}
+  after={codesBrokenForeground}
+  beforeAlt="Kitchen before renovation"
+  afterAlt="Kitchen after renovation"
+  beforeLabel="Background"
+  afterLabel="Foreground"
+/>
 
 ---
 

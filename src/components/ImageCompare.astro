@@ -1,0 +1,132 @@
+---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+
+interface Props {
+  before: ImageMetadata;
+  after: ImageMetadata;
+  beforeAlt?: string;
+  afterAlt?: string;
+  beforeLabel?: string;
+  afterLabel?: string;
+}
+
+const {
+  before,
+  after,
+  beforeAlt = "Before",
+  afterAlt = "After",
+  beforeLabel = "Before",
+  afterLabel = "After",
+} = Astro.props;
+---
+
+<figure class="image-compare">
+  <div class="image-compare-images">
+    <Image src={before} alt={beforeAlt} class="image-before" />
+    <Image src={after} alt={afterAlt} class="image-after" />
+  </div>
+  <figcaption class="image-compare-controls">
+    <label class="image-compare-toggle">
+      <input type="checkbox" />
+      <span class="toggle-track">
+        <span class="toggle-option toggle-before">{beforeLabel}</span>
+        <span class="toggle-option toggle-after">{afterLabel}</span>
+      </span>
+    </label>
+  </figcaption>
+</figure>
+
+<style>
+  .image-compare {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Reset .prose img styles that would interfere */
+  .image-compare img {
+    margin: 0;
+    border-radius: 0;
+  }
+
+  .image-compare-images {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    line-height: 0;
+  }
+
+  .image-before,
+  .image-after {
+    width: 100%;
+    height: auto;
+    transition: opacity 400ms ease;
+  }
+
+  .image-after {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+  }
+
+  .image-compare:has(input:checked) .image-after {
+    opacity: 1;
+  }
+
+  .image-compare:has(input:checked) .image-before {
+    opacity: 0;
+  }
+
+  /* Toggle control */
+  .image-compare-controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.75rem;
+  }
+
+  .image-compare-toggle {
+    cursor: pointer;
+  }
+
+  .image-compare-toggle input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .toggle-track {
+    display: inline-flex;
+    background-color: var(--color-surface-raised);
+    border: 1px solid var(--color-border);
+    border-radius: 9999px;
+    padding: 3px;
+    font-family: var(--font-inter);
+    font-size: 0.8rem;
+    line-height: 1;
+  }
+
+  .toggle-option {
+    padding: 0.4rem 1rem;
+    border-radius: 9999px;
+    color: var(--color-text-muted);
+    transition:
+      background-color 300ms ease,
+      color 300ms ease;
+    user-select: none;
+  }
+
+  .toggle-before {
+    background-color: var(--color-accent);
+    color: var(--color-surface);
+  }
+
+  .image-compare:has(input:checked) .toggle-before {
+    background-color: transparent;
+    color: var(--color-text-muted);
+  }
+
+  .image-compare:has(input:checked) .toggle-after {
+    background-color: var(--color-accent);
+    color: var(--color-surface);
+  }
+</style>
