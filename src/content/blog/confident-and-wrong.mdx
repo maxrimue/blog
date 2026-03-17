@@ -89,7 +89,7 @@ if let image = QRCodeGenerator.generate(from: content) {
 
 Now, the SOTA AI models argue this is, for lack of a better explanation, too fragile. Something about the rendering pipeline, of which naturally I didn't know much about at this point, was not fit for the job. The rendering would need to be made more "robust" in various ways. Of course, not understanding the problem means not understanding the solution, so I let it try a few things and continuously test the widget in background. But no improvement or change in behavior.
 
-Eventually, several models give up on the experiment and explain that the only alternative at this point would be rendering the QR codes when they're created, storing them somewhere and then rendering an image instead of a dynamically generate code. I give in and let it build a prototype implementation of that approach, although this complicated a supposedly easy app a lot.
+Eventually, several models give up on the experiment and explain that the only alternative at this point would be generating  images of the QR codes when they're created, storing them somewhere and then rendering those pre-generated images instead of rendering the codes on the fly. I give in and let it build a prototype implementation of that approach, although this complicated the supposedly easy app a lot.
 
 But guess what? It still did not work! The result looked just the same. And thinking about that and all the time I already poured into this, I was pretty close to giving up. What if the Photos widget has a privileged rendering pipeline I won't be able to replicate? What if this is connected to a weird SwiftUI or macOS bug I won't even understand enough to report? Is it worth it to chase this further instead of just using the previous approach?
 
